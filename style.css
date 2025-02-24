@@ -1,0 +1,291 @@
+.div-com-bordas {
+    border: 1px solid black;
+    background-color: navy;
+    margin: 1px;
+}
+
+tr{
+    height: 2vw;
+}
+
+td input{
+    height: 2vw;
+}
+
+.div-cabeçalho {
+    border: 1px solid black;
+    display: flex;
+    height: fit-content;
+    background-color: white;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nao-conformidade {
+    text-align: left;
+    font-style: normal;
+    color: navy;
+    font-size: 2vw; 
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    padding-left: 2px;
+    align-items: center;
+}
+
+.numero-ocorrencia {
+    text-align: left;
+    font-style: normal;
+    color: blue;
+    font-size: 1.5vw; 
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    padding-left: 2px;
+}
+
+.setas {
+    width: 4vw;
+    height: 3vw;
+    padding-left: 20px;
+}
+
+.logo-brk {
+    width: 8vw;
+    height: 6vw;
+    padding-left: 40px;
+    padding-top: 5px;
+}
+
+.identificação {
+    background-color: blue;
+    padding-top: 10px;
+}
+
+.observações {
+    background-color: blue;
+    padding-top: px;
+}
+
+.textoidentificação {
+    color: white;
+    font-size: 1.2vw; 
+    font-weight: bold;
+    transform: rotate(-90deg);
+}
+
+.tituloidentificação {
+    display: flex;
+    color: white;
+    font-size: 1.2vw; 
+    font-weight: bold;
+    width: 100%;
+    justify-content: center;
+    background-color: blue;
+}
+
+.quadro-identificações {
+    background-color: white;
+    width: 97%;
+}
+
+.imagem {
+    width: 100%;
+    height: 20vw;
+}
+
+.quadro-assinaturas {
+    background-color: white;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.texto-descrição {
+    font-weight: bold;
+    color: navy;
+    font-size: 1.2vw; 
+}
+
+.texto-atividade {
+    color: navy;
+    font-size: 1.2vw; 
+}
+
+.larg-desc {
+    width: 20%;
+    padding-top: 5px;
+
+}
+
+.larg-atv {
+    width: 80%;
+    padding-top: 5px;
+    height: max-content;
+}
+
+.larg-desc-checkbox {
+    display: flex;
+    width: 15%;
+    padding-top: 5px;
+}
+
+.larg-atv-checkbox {
+    width: 85%;
+    padding-top: 5px;
+}
+
+.radio-group {
+    display: flex;
+    justify-content: space-around;
+    height: max-content;
+    align-items: center;
+}
+
+.radio-item {
+    display: flex;
+    margin-right: 10px;
+    height: 2vw;
+    width: 2vw;
+    width: 30%;
+    align-items: center;
+}
+
+.checkbox-group {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    height: fit-content;
+    width: max-content;
+    align-items: center;
+}
+
+.checkbox-group-around {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    height: fit-content;
+    align-items: center;
+}
+
+.checkbox-item {
+    margin-right: 2px;
+    height: 2vw;
+    width: 2vw;
+    align-items: center;
+}
+
+.custom-select {
+    display: flex;
+    align-items: center;
+    width: 200px;
+    overflow: hidden;
+    font-size: 1.2vw; 
+    padding-top: 5px;
+}
+
+.custom-select select {
+    width: 70%;
+    border: none;
+    border-bottom: 1px solid #000;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-size: 1.2vw; 
+}
+
+.custom-select label {
+    margin-right: 10px;
+    font-weight: bolder;
+    font-size: 1.2vw; 
+    color: navy;
+}
+
+.input-container input {
+    border: none;
+    border-bottom: 1px solid #000;
+    font-size: 1.4vw; 
+    width: 70%;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.toda-largura {
+    width: 100%;
+    height: max-content;
+    flex-wrap: wrap;
+  
+}
+
+.labels {
+    display: flex;
+    align-items: center;
+    width: 22%;
+}
+
+.date-input {
+    font-family: Arial, sans-serif;
+    font-size: 1.5vw;
+    height: 2vw;
+    color: #333;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+.date-input:focus {
+    background-color: white;
+    outline: none;
+    border-color: #007BFF;
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+    background: transparent;
+    cursor: pointer;
+}
+
+
+button {
+    font-size: 1em;
+    color: #ffffff;
+    padding: 15px 30px;
+    margin: 10px;
+    background: #007BFF;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+    background: #0056b3;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+#downloadPDF {
+    background: #28a745;
+}
+
+#downloadPDF:hover {
+    background: #1e7e34;
+    box-shadow: 0px 15px 20px rgba(40, 167, 69, 0.4);
+    transform: translateY(-7px);
+}
+
+.quadro-assinaturas > :nth-child(1) > :nth-child(1),
+.quadro-assinaturas > :nth-child(2) > :nth-child(3) {
+    height: 10vw;
+}
+
+
