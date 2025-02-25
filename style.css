@@ -232,10 +232,11 @@ td input{
 .date-input {
     font-family: Arial, sans-serif;
     font-size: 1.5vw;
-    height: 2vw;
+    height: 1.8rem;
+    width: 50%;
     color: #333;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     border-radius: 5px;
     background-color: white;
     transition: background-color 0.3s ease;

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.3/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
@@ -15,6 +16,7 @@
     <title>RNC</title>
 
 </head>
+
 <body>
 
     <div>
@@ -24,7 +26,7 @@
             <div class="div-cabeçalho container" style="justify-content: space-between;">
                 <div>
                     <pc class="nao-conformidade">REGISTRO DE NÃO CONFORMIDADE | RNC</p>
-                    <p class="numero-ocorrencia">N°: ________</p>
+                        <p class="numero-ocorrencia">N°: ________</p>
                 </div>
 
 
@@ -40,7 +42,7 @@
                 <div style="width: 3%; height: max-content; padding-top:40%;">
                     <p class="textoidentificação">IDENTIFICAÇÃO</p>
                 </div>
-                
+
 
                 <div class="quadro-identificações container">
 
@@ -52,15 +54,15 @@
                                 <input type="radio" id="liberada" name="status" value="liberada">
                                 <label class="checkbox-group" for="liberada">Liberada</label>
                             </div>
-                            
+
                             <div class="radio-item">
                                 <input type="radio" id="liberadaRestricao" name="status" value="liberadaRestricao">
                                 <label class="checkbox-group" for="liberadaRestricao">Liberada c/ Restrição</label>
                             </div>
-                            
+
                             <div class="radio-item">
                                 <input type="radio" id="suspensaParalisada" name="status" value="suspensaParalisada">
-                                <label  class="checkbox-group" for="suspensaParalisada">Suspensa/Paralisada</label>
+                                <label class="checkbox-group" for="suspensaParalisada">Suspensa/Paralisada</label>
                             </div>
                         </form>
                     </div>
@@ -69,10 +71,10 @@
                     <div class="larg-desc texto-descrição">CONTRATANTE:</div>
                     <div class="larg-atv texto-atividade">BRK SANEATINS</div>
 
-                    
+
 
                     <div class="toda-largura container">
-                            <!-- contratada -->
+                        <!-- contratada -->
                         <div class="custom-select texto-descrição" style="width: 70%;">
                             <label class="texto-descrição" for="empresa">CONTRATADA:</label>
                             <select id="empresa">
@@ -88,8 +90,8 @@
 
                     </div>
 
-                    
-                    
+
+
                     <!-- escopo -->
                     <div class="larg-atv texto-descrição input-container toda-largura">
                         <label for="escopo">ESCOPO:</label>
@@ -110,7 +112,7 @@
                     </div>
 
                     <!-- TIPO -->
-                    <div class="larg-desc-checkbox texto-descrição"  S><br>TIPO:</div>
+                    <div class="larg-desc-checkbox texto-descrição" S><br>TIPO:</div>
                     <div class="larg-atv-checkbox texto-atividade">
                         <form class="checkbox-group-around">
                             <label class="labels" for="saa1">
@@ -131,45 +133,54 @@
                         <div class="larg-atv-checkbox texto-atividade ">
                             <form class="checkbox-group">
                                 <label class="labels" for="execucao">
-                                    <input class="checkbox-item" type="checkbox" id="execucao" name="natureza" value="execucao">
+                                    <input class="checkbox-item" type="checkbox" id="execucao" name="natureza"
+                                        value="execucao">
                                     EXECUÇÃO
                                 </label>
                                 <label class="labels" for="qualidade">
-                                    <input class="checkbox-item" type="checkbox" id="qualidade" name="natureza" value="qualidade">
+                                    <input class="checkbox-item" type="checkbox" id="qualidade" name="natureza"
+                                        value="qualidade">
                                     QUALIDADE
                                 </label>
                                 <label class="labels" for="seguranca">
-                                    <input class="checkbox-item" type="checkbox" id="seguranca" name="natureza" value="seguranca">
+                                    <input class="checkbox-item" type="checkbox" id="seguranca" name="natureza"
+                                        value="seguranca">
                                     SEGURANÇA
                                 </label>
                                 <label class="labels" for="projeto">
-                                    <input class="checkbox-item" type="checkbox" id="projeto" name="natureza" value="projeto">
+                                    <input class="checkbox-item" type="checkbox" id="projeto" name="natureza"
+                                        value="projeto">
                                     PROJETO
                                 </label>
                                 <label class="labels" for="outros">
-                                    <input class="checkbox-item" type="checkbox" id="outros" name="natureza" value="outros">
+                                    <input class="checkbox-item" type="checkbox" id="outros" name="natureza"
+                                        value="outros">
                                     OUTROS
                                 </label>
                                 <label class="labels" for="material">
-                                    <input class="checkbox-item" type="checkbox" id="material" name="natureza" value="material">
+                                    <input class="checkbox-item" type="checkbox" id="material" name="natureza"
+                                        value="material">
                                     MATERIAL
                                 </label>
                                 <label class="labels" for="interferencia">
-                                    <input class="checkbox-item" type="checkbox" id="interferencia" name="natureza" value="interferencia">
+                                    <input class="checkbox-item" type="checkbox" id="interferencia" name="natureza"
+                                        value="interferencia">
                                     INTERFERENCIA
                                 </label>
                                 <label class="labels" for="mAmbiente">
-                                    <input class="checkbox-item" type="checkbox" id="mAmbiente" name="natureza" value="mAmbiente">
+                                    <input class="checkbox-item" type="checkbox" id="mAmbiente" name="natureza"
+                                        value="mAmbiente">
                                     M. ANBIENTE
                                 </label>
                                 <label class="labels" for="organizComportamento">
-                                    <input class="checkbox-item" type="checkbox" id="organizComportamento" name="natureza" value="organizComportamento">
+                                    <input class="checkbox-item" type="checkbox" id="organizComportamento"
+                                        name="natureza" value="organizComportamento">
                                     ORGANIZ/COMPORTAMENTO
                                 </label>
                             </form>
                         </div>
                     </div>
-                    
+
                     <!--OBRA -->
                     <div class="container toda-largura">
                         <div class="larg-desc-checkbox texto-descrição" style="align-items: center;">OBRA:</div>
@@ -185,11 +196,13 @@
                                     RDA
                                 </label>
                                 <label class="labels" for="ligacoes">
-                                    <input class="checkbox-item" type="checkbox" id="ligacoes" name="obra" value="ligacoes">
+                                    <input class="checkbox-item" type="checkbox" id="ligacoes" name="obra"
+                                        value="ligacoes">
                                     LIGAÇÕES
                                 </label>
                                 <label class="labels" for="adutora">
-                                    <input class="checkbox-item" type="checkbox" id="adutora" name="obra" value="adutora">
+                                    <input class="checkbox-item" type="checkbox" id="adutora" name="obra"
+                                        value="adutora">
                                     ADUTORA
                                 </label>
                                 <label class="labels" for="outro">
@@ -197,7 +210,8 @@
                                     OUTROS
                                 </label>
                                 <label class="labels" for="coletor">
-                                    <input class="checkbox-item" type="checkbox" id="coletor" name="obra" value="coletor">
+                                    <input class="checkbox-item" type="checkbox" id="coletor" name="obra"
+                                        value="coletor">
                                     COLETOR
                                 </label>
                                 <label class="labels" for="lr">
@@ -209,7 +223,8 @@
                                     EEE
                                 </label>
                                 <label class="labels" for="reservatorio">
-                                    <input class="checkbox-item" type="checkbox" id="reservatorio" name="obra" value="reservatorio">
+                                    <input class="checkbox-item" type="checkbox" id="reservatorio" name="obra"
+                                        value="reservatorio">
                                     RESERVATÓRIO
                                 </label>
                                 <label class="labels" for="ete">
@@ -221,11 +236,13 @@
                                     ETA
                                 </label>
                                 <label class="labels" for="barragem">
-                                    <input class="checkbox-item" type="checkbox" id="barragem" name="obra" value="barragem">
+                                    <input class="checkbox-item" type="checkbox" id="barragem" name="obra"
+                                        value="barragem">
                                     BARRAGEM
                                 </label>
-                                <label class="labels"for="pavimentacao">
-                                    <input class="checkbox-item" type="checkbox" id="pavimentacao" name="obra" value="pavimentacao">
+                                <label class="labels" for="pavimentacao">
+                                    <input class="checkbox-item" type="checkbox" id="pavimentacao" name="obra"
+                                        value="pavimentacao">
                                     PAVIMENTAÇÃO
                                 </label>
                             </form>
@@ -233,7 +250,7 @@
                     </div>
 
                     <!-- GRAU -->
-                    <div class="larg-desc-checkbox texto-descrição"  S><br>GRAU:</div>
+                    <div class="larg-desc-checkbox texto-descrição" S><br>GRAU:</div>
                     <div class="larg-atv-checkbox texto-atividade" style="padding-bottom: 10px;">
                         <form class="checkbox-group-around">
                             <label class="labels" for="leve">
@@ -249,7 +266,8 @@
                                 GRAVE
                             </label>
                             <label class="labels" for="gravissima">
-                                <input class="checkbox-item" type="radio" id="gravissima" name="grau" value="gravissima">
+                                <input class="checkbox-item" type="radio" id="gravissima" name="grau"
+                                    value="gravissima">
                                 GRAVÍSSIMA
                             </label>
                         </form>
@@ -272,15 +290,16 @@
                 <div class="quadro-identificações container">
 
                     <!--titulo deitado-->
-                    <div style="background-color: blue; color: white; height: fit-content; justify-content: center; display: flex; align-items: center;" class="texto-descrição toda-largura">
+                    <div style="background-color: blue; color: white; height: fit-content; justify-content: center; display: flex; align-items: center;"
+                        class="texto-descrição toda-largura">
                         <p>OBSERVAÇÕES/IMAGENS</p>
                     </div>
 
                     <!--problema identificado-->
-                    <div class="toda-largura texto-descrição" >
+                    <div class="toda-largura texto-descrição">
                         <p>PROBLEMA IDENTIFICADO</p>
                     </div>
-                    
+
                     <!--texto de area-->
                     <div class="toda-largura">
                         <textarea style="font-size: 1.2vw; width: 98%" id="myTextarea" rows="6"></textarea>
@@ -291,9 +310,11 @@
                         <div style="width: 48%;">
                             <form>
                                 <label for="fileInput1">
-                                <img id="img1" class="imagem" src="sem fig.jpg" alt="Upload de arquivo" style="cursor:pointer;"/>
+                                    <img id="img1" class="imagem" src="sem fig.jpg" alt="Upload de arquivo"
+                                        style="cursor:pointer;" />
                                 </label>
-                                <input type="file" id="fileInput1" style="display:none;" accept="image/*" onchange="loadImage1(event)">
+                                <input type="file" id="fileInput1" style="display:none;" accept="image/*"
+                                    onchange="loadImage1(event)">
 
                                 <div class="input-container" style="justify-content: center; display: flex;">
                                     <label for="figura1?:" class="texto-descrição"> Figura 1:</label>
@@ -305,9 +326,11 @@
                         <div style="width: 48%;">
                             <form>
                                 <label for="fileInput2">
-                                <img id="img2" class="imagem" src="sem fig.jpg" alt="Upload de arquivo" style="cursor:pointer;"/>
+                                    <img id="img2" class="imagem" src="sem fig.jpg" alt="Upload de arquivo"
+                                        style="cursor:pointer;" />
                                 </label>
-                                <input type="file" id="fileInput2" style="display:none;" accept="image/*" onchange="loadImage2(event)">
+                                <input type="file" id="fileInput2" style="display:none;" accept="image/*"
+                                    onchange="loadImage2(event)">
 
                                 <div class="input-container" style="justify-content: center; display: flex;">
                                     <label for="figura2?:" class="texto-descrição"> Figura 2:</label>
@@ -318,7 +341,7 @@
                         </div>
                     </div>
                 </div>
-            
+
             </div>
 
             <!-- QUARTOO BLOCO-->
@@ -332,12 +355,13 @@
                 <div class="quadro-identificações container">
 
                     <!--titulo deitado-->
-                    <div style="background-color: blue; color: white; height: fit-content; justify-content: center; display: flex; align-items: center;" class="texto-descrição toda-largura">
+                    <div style="background-color: blue; color: white; height: fit-content; justify-content: center; display: flex; align-items: center;"
+                        class="texto-descrição toda-largura">
                         <p>AÇÕES CORRETIVAS</p>
                     </div>
 
                     <!--problema identificado-->
-                    <div class="toda-largura texto-descrição" >
+                    <div class="toda-largura texto-descrição">
                         <p>DISPOSIÇÕES GERAIS</p>
                     </div>
 
@@ -364,7 +388,7 @@
                             </div>
                         </form>
                     </div>
-                    
+
                     <!--tabela-->
                     <div class="toda-largura texto-atividade" style="padding-top: 10px;">
                         <table style="width: 100%; border: 1px solid black;">
@@ -376,49 +400,53 @@
                             <tr>
                                 <td><input type="text" style="width: 100%;"></td>
                                 <td><input type="text" style="width: 100%;"></td>
-                                <td><input type="date" style="width: 97%;"></td>
+                                <td><input type="date" style="width: 97%;" class="date-input"></td>
                             </tr>
                             <tr>
                                 <td><input type="text" style="width: 100%;"></td>
                                 <td><input type="text" style="width: 100%;"></td>
-                                <td><input type="date" style="width: 97%;"></td>
+                                <td><input type="date" style="width: 97%;" class="date-input"></td>
                             </tr>
                             <tr>
                                 <td><input type="text" style="width: 100%;"></td>
                                 <td><input type="text" style="width: 100%;"></td>
-                                <td><input type="date" style="width: 97%;"></td>
+                                <td><input type="date" style="width: 97%;" class="date-input"></td>
                             </tr>
                         </table>
                     </div>
-                    
+
                 </div>
-            
+
             </div>
-                
+
             <!-- QUINTO BLOCO-->
             <div class="container observações">
 
+                <!-- Estrutura de Assinaturas -->
                 <div class="quadro-assinaturas container">
-
                     <div class="texto-descrição" style="width:49%; border: 1px solid black;padding-bottom: 10px;">
                         <label for="dataAbertura">DATA DE ABERTURA:</label>
-                        <input type="date" id="dataAbertura" name="dataAbertura">
-                    
+                        <input type="date" id="dataAbertura" name="dataAbertura" class="date-input">
+
                         <!--CONTRATANTE-->
-                        <div style="height: 80px; width: 100%;" class="toda-largura" onclick="openSignatureModal('signature-pad', 'signature-canvas1', 'signature-pad')">
-                            <canvas id="signature-pad" style="width: 100%; height: 100%; border: 1px solid #ccc;"></canvas>
-                        </div>                        
+                        <div style="height: 20rem; width: 100%;" class="toda-largura"
+                            onclick="openSignatureModal('signature-canvas1', 'signature-pad')">
+                            <canvas id="signature-pad1"
+                                style="width: 100%; height: 100%; border: 1px solid #ccc;"></canvas>
+                        </div>
                         <div class="texto-descrição container" style="justify-content: center; width: 100%;">
                             <div style="width: 100%; display: flex; justify-content: center;">
                                 <label>____________________________________________________</label>
                             </div>
                             <div><label>CONTRATANTE</label></div>
                         </div>
-                        
+
                         <!--CONTRATADA-->
-                        <div style="height: 80px; width: 100%;" class="toda-largura" onclick="openSignatureModal('signature-pad1', 'signature-canvas2', 'signature-pad1')">
-                            <canvas id="signature-pad1" style="width: 100%; height: 100%; border: 1px solid #ccc;"></canvas>
-                        </div>   
+                        <div style="height: 20rem; width: 100%;" class="toda-largura"
+                            onclick="openSignatureModal('signature-canvas2', 'signature-pad1')">
+                            <canvas id="signature-pad2"
+                                style="width: 100%; height: 100%; border: 1px solid #ccc;"></canvas>
+                        </div>
                         <div class="texto-descrição container" style="justify-content: center; width: 100%;">
                             <div style="width: 100%; display: flex; justify-content: center;">
                                 <label>____________________________________________________</label>
@@ -426,170 +454,116 @@
                             <div><label>CONTRATADA</label></div>
                         </div>
                     </div>
-                    
+
                     <div class="texto-descrição" style="width:49%; border: 1px solid black;padding-bottom: 10px;">
                         <label for="dataFechamento">DATA DE FECHAMENTO:</label>
-                        <input type="date" id="dataFechamento" name="dataFechamento">
-                    
+                        <input type="date" id="dataFechamento" name="dataFechamento" class="date-input">
+
                         <!--CONTRATANTE-->
-                        <div style="height: 80px; width: 100%;" class="toda-largura" onclick="openSignatureModal('signature-pad2', 'signature-canvas3', 'signature-pad2')">
-                            <canvas id="signature-pad2" style="width: 100%; height: 100%; border: 1px solid #ccc;"></canvas>
-                        </div>   
+                        <div style="height: 20rem; width: 100%;" class="toda-largura"
+                            onclick="openSignatureModal('signature-canvas3', 'signature-pad2')">
+                            <canvas id="signature-pad3"
+                                style="width: 100%; height: 100%; border: 1px solid #ccc;"></canvas>
+                        </div>
                         <div class="texto-descrição container" style="justify-content: center; width: 100%;">
                             <div style="width: 100%; display: flex; justify-content: center;">
                                 <label>____________________________________________________</label>
                             </div>
                             <div><label>CONTRATANTE</label></div>
-                        </div>
-                    
-                        <!--CONTRATADA-->
-                        <div style="height: 80px; width: 100%;" class="toda-largura" onclick="openSignatureModal('signature-pad3', 'signature-canvas4', 'signature-pad3')">
-                            <canvas id="signature-pad3" style="width: 100%; height: 100%; border: 1px solid #ccc;"></canvas>
-                        </div>   
-                        <div class="texto-descrição container" style="justify-content: center; width: 100%;">
-                            <div style="width: 100%; display: flex; justify-content: center;">
-                                <label>____________________________________________________</label>
+
+                            <!--CONTRATADA-->
+                            <div style="height: 20rem; width: 100%;" class="toda-largura"
+                                onclick="openSignatureModal('signature-canvas4', 'signature-pad3')">
+                                <canvas id="signature-pad4"
+                                    style="width: 100%; height: 100%; border: 1px solid #ccc;"></canvas>
                             </div>
-                            <div><label>CONTRATADA</label></div>
+                            <div class="texto-descrição container" style="justify-content: center; width: 100%;">
+                                <div style="width: 100%; display: flex; justify-content: center;">
+                                    <label>____________________________________________________</label>
+                                </div>
+                                <div><label>CONTRATADA</label></div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <!-- Modal de Assinatura -->
-                    <div id="signatureModal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center;">
-                        <div style="background: white; padding: 20px; position: relative; max-width: 100%; max-height: 100%; overflow: auto;">
-                            <canvas id="signature-canvas1" style="width: 100%; height: 400px; border: 1px solid #ccc;"></canvas>
-                            <button style="position: absolute; top: 10px; right: 10px;" onclick="closeSignatureModal()">Fechar</button>
-                            <button style="position: absolute; bottom: 10px; left: 10px;" onclick="clearSignature()">Limpar</button>
-                            <button style="position: absolute; bottom: 10px; right: 10px;" onclick="saveSignature()">Salvar</button>
+
+                    <!-- Modal 1 para Assinatura -->
+                    <div id="signatureModal1"
+                        style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center;">
+                        <div
+                            style="background: white; padding: 20px; position: relative; max-width: 100%; max-height: 100%; overflow: auto;">
+                            <canvas id="signature-canvas1"
+                                style="width: 100%; height: 400px; border: 1px solid #ccc;"></canvas>
+                            <button style="position: absolute; top: 10px; right: 10px;"
+                                onclick="closeSignatureModal('signatureModal1')">Fechar</button>
+                            <button style="position: absolute; bottom: 10px; left: 10px;"
+                                onclick="clearSignature('signature-canvas1')">Limpar</button>
+                            <button style="position: absolute; bottom: 10px; right: 10px;"
+                                onclick="saveSignature('signature-canvas1', 'signature-pad1')">Salvar</button>
                         </div>
                     </div>
-                    
-                    <script>
-                        let signaturePads = {};
-                        let currentCanvasId;
-                        let currentOriginalCanvasId;
-                    
-                        // Função para abrir o modal de assinatura
-                        function openSignatureModal(modalCanvasId, originalCanvasId, canvasId) {
-                            // Exibe o modal
-                            document.getElementById('signatureModal').style.display = 'flex';
-                    
-                            // Prepara o canvas
-                            let modalCanvas = document.getElementById(modalCanvasId);
-                            modalCanvas.width = window.innerWidth * 0.9;  // Ajuste do tamanho do canvas
-                            modalCanvas.height = 400;  // Ajuste da altura do canvas
-                            let context = modalCanvas.getContext('2d');
-                    
-                            // Guardar o contexto da assinatura
-                            signaturePads[modalCanvasId] = context;
-                            currentCanvasId = modalCanvasId;  // Guarda o id do canvas modal
-                            currentOriginalCanvasId = originalCanvasId;  // Guarda o id do canvas original
-                    
-                            // Inicializar o desenhar no canvas
-                            modalCanvas.addEventListener('mousedown', startDrawing);
-                            modalCanvas.addEventListener('mousemove', draw);
-                            modalCanvas.addEventListener('mouseup', stopDrawing);
-                            modalCanvas.addEventListener('mouseout', stopDrawing);
-                            modalCanvas.addEventListener('touchstart', startDrawingTouch, { passive: false });
-                            modalCanvas.addEventListener('touchmove', drawTouch, { passive: false });
-                            modalCanvas.addEventListener('touchend', stopDrawingTouch);
-                        }
-                    
-                        // Função para desenhar (com mouse)
-                        let isDrawing = false;
-                        let lastX = 0;
-                        let lastY = 0;
-                    
-                        function startDrawing(e) {
-                            isDrawing = true;
-                            [lastX, lastY] = [getMousePosition(e).x, getMousePosition(e).y];
-                        }
-                    
-                        function draw(e) {
-                            if (!isDrawing) return;
-                    
-                            let ctx = signaturePads[e.target.id];
-                            let { x, y } = getMousePosition(e);
-                            ctx.beginPath();
-                            ctx.moveTo(lastX, lastY);
-                            ctx.lineTo(x, y);
-                            ctx.stroke();
-                            [lastX, lastY] = [x, y];
-                        }
-                    
-                        function stopDrawing() {
-                            isDrawing = false;
-                        }
-                    
-                        function getMousePosition(e) {
-                            let rect = e.target.getBoundingClientRect();
-                            return { x: e.clientX - rect.left, y: e.clientY - rect.top };
-                        }
-                    
-                        // Funções para toque (em dispositivos móveis)
-                        function startDrawingTouch(e) {
-                            isDrawing = true;
-                            e.preventDefault(); // Para evitar o comportamento padrão de rolagem
-                            let touch = e.touches[0];
-                            [lastX, lastY] = [touch.clientX, touch.clientY];
-                        }
-                    
-                        function drawTouch(e) {
-                            if (!isDrawing) return;
-                            e.preventDefault(); // Para evitar o comportamento padrão de rolagem
-                            let touch = e.touches[0];
-                            let { x, y } = getTouchPosition(e);
-                            let ctx = signaturePads[e.target.id];
-                            ctx.beginPath();
-                            ctx.moveTo(lastX, lastY);
-                            ctx.lineTo(x, y);
-                            ctx.stroke();
-                            [lastX, lastY] = [x, y];
-                        }
-                    
-                        function stopDrawingTouch() {
-                            isDrawing = false;
-                        }
-                    
-                        function getTouchPosition(e) {
-                            let rect = e.target.getBoundingClientRect();
-                            return { x: e.touches[0].clientX - rect.left, y: e.touches[0].clientY - rect.top };
-                        }
-                    
-                        // Função para fechar o modal
-                        function closeSignatureModal() {
-                            document.getElementById('signatureModal').style.display = 'none';
-                        }
-                    
-                        // Função para limpar a assinatura no modal
-                        function clearSignature() {
-                            let modalCanvas = document.querySelector('#signatureModal canvas');
-                            modalCanvas.getContext('2d').clearRect(0, 0, modalCanvas.width, modalCanvas.height);
-                        }
-                    
-                        // Função para salvar a assinatura e transferir para o canvas original
-                        function saveSignature() {
-                            let modalCanvas = document.querySelector('#signatureModal canvas');
-                            let originalCanvas = document.getElementById(currentOriginalCanvasId);
-                    
-                            // Pega o conteúdo do canvas do modal e coloca no canvas original
-                            let context = originalCanvas.getContext('2d');
-                            context.clearRect(0, 0, originalCanvas.width, originalCanvas.height);  // Limpa o canvas original
-                            context.drawImage(modalCanvas, 0, 0);  // Desenha a imagem do canvas modal no canvas original
-                    
-                            // Fecha o modal após salvar
-                            closeSignatureModal();
-                        }
-                    </script>
-                    
-                   
+
+                    <!-- Modal 2 para Assinatura -->
+                    <div id="signatureModal2"
+                        style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center;">
+                        <div
+                            style="background: white; padding: 20px; position: relative; max-width: 100%; max-height: 100%; overflow: auto;">
+                            <canvas id="signature-canvas2"
+                                style="width: 100%; height: 400px; border: 1px solid #ccc;"></canvas>
+                            <button style="position: absolute; top: 10px; right: 10px;"
+                                onclick="closeSignatureModal('signatureModal2')">Fechar</button>
+                            <button style="position: absolute; bottom: 10px; left: 10px;"
+                                onclick="clearSignature('signature-canvas2')">Limpar</button>
+                            <button style="position: absolute; bottom: 10px; right: 10px;"
+                                onclick="saveSignature('signature-canvas2', 'signature-pad2')">Salvar</button>
+                        </div>
+                    </div>
+
+                    <!-- Modal 3 para Assinatura -->
+                    <div id="signatureModal3"
+                        style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center;">
+                        <div
+                            style="background: white; padding: 20px; position: relative; max-width: 100%; max-height: 100%; overflow: auto;">
+                            <canvas id="signature-canvas3"
+                                style="width: 100%; height: 400px; border: 1px solid #ccc;"></canvas>
+                            <button style="position: absolute; top: 10px; right: 10px;"
+                                onclick="closeSignatureModal('signatureModal3')">Fechar</button>
+                            <button style="position: absolute; bottom: 10px; left: 10px;"
+                                onclick="clearSignature('signature-canvas3')">Limpar</button>
+                            <button style="position: absolute; bottom: 10px; right: 10px;"
+                                onclick="saveSignature('signature-canvas3', 'signature-pad3')">Salvar</button>
+                        </div>
+                    </div>
+
+                    <!-- Modal 4 para Assinatura -->
+                    <div id="signatureModal4"
+                        style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center;">
+                        <div
+                            style="background: white; padding: 20px; position: relative; max-width: 100%; max-height: 100%; overflow: auto;">
+                            <canvas id="signature-canvas4"
+                                style="width: 100%; height: 400px; border: 1px solid #ccc;"></canvas>
+                            <button style="position: absolute; top: 10px; right: 10px;"
+                                onclick="closeSignatureModal('signatureModal4')">Fechar</button>
+                            <button style="position: absolute; bottom: 10px; left: 10px;"
+                                onclick="clearSignature('signature-canvas4')">Limpar</button>
+                            <button style="position: absolute; bottom: 10px; right: 10px;"
+                                onclick="saveSignature('signature-canvas4', 'signature-pad4')">Salvar</button>
+                        </div>
+                    </div>
+
+
+
                 </div>
-            
+
+
+
             </div>
+
         </div>
     </div>
+ 
 
-    <button  class="toda-largura"  id="downloadPDF">Baixar como PDF</button>
+    <button class="toda-largura" id="downloadPDF">Baixar como PDF</button>
 
 </body>
+
 </html>

@@ -195,3 +195,148 @@ function showError(error) {
     }
 }
 
+
+
+
+
+
+    let signaturePads = {};  // Para armazenar os contextos dos canvases
+    let currentModalCanvasId = null; // O canvas atual sendo editado no modal
+    let currentFormCanvasId = null;  // O canvas correspondente no formulário
+
+    // Função para abrir o modal e configurar o canvas correto
+    function openSignatureModal(modalCanvasId, formCanvasId) {
+        // Exibe o modal correto baseado no número do canvas
+        const modalNumber = modalCanvasId.charAt(modalCanvasId.length - 1);
+        document.getElementById(`signatureModal${modalNumber}`).style.display = 'flex';
+
+        // Prepara o canvas do modal
+        let modalCanvas = document.getElementById(modalCanvasId);
+        modalCanvas.width = window.innerWidth * 0.9;  // Ajuste do tamanho do canvas
+        modalCanvas.height = 400;  // Ajuste da altura do canvas
+        let context = modalCanvas.getContext('2d');
+
+        // Guardando o contexto para desenhos
+        signaturePads[modalCanvasId] = context;
+        currentModalCanvasId = modalCanvasId;  // Guarda o id do canvas modal
+        currentFormCanvasId = formCanvasId;  // Guarda o id do canvas correspondente no formulário
+
+        // Inicializa os eventos de desenho
+        initializeCanvas(modalCanvas);
+    }
+
+    // Função para inicializar os eventos de desenho no canvas
+    function initializeCanvas(modalCanvas) {
+        let context = signaturePads[currentModalCanvasId];
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        // Ajustando a qualidade da linha
+        context.lineJoin = 'round';  // Para suavizar as pontas da linha
+        context.lineCap = 'round';   // Para suavizar as extremidades da linha
+        context.lineWidth = 5;       // Ajuste do tamanho da linha para maior visibilidade
+
+        // Inicia o desenho (mouse ou toque)
+        modalCanvas.addEventListener('mousedown', startDrawing);
+        modalCanvas.addEventListener('mousemove', draw);
+        modalCanvas.addEventListener('mouseup', stopDrawing);
+        modalCanvas.addEventListener('mouseout', stopDrawing);
+        modalCanvas.addEventListener('touchstart', startDrawingTouch, { passive: false });
+        modalCanvas.addEventListener('touchmove', drawTouch, { passive: false });
+        modalCanvas.addEventListener('touchend', stopDrawingTouch);
+
+        // Função de início de desenho
+        function startDrawing(e) {
+            isDrawing = true;
+            const pos = getPosition(e);
+            [lastX, lastY] = [pos.x, pos.y];
+        }
+
+        // Função de desenhar
+        function draw(e) {
+            if (!isDrawing) return;
+            const ctx = signaturePads[currentModalCanvasId];
+            const { x, y } = getPosition(e);
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            [lastX, lastY] = [x, y];
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        // Função para obter a posição do mouse ou toque
+        function getPosition(e) {
+            const rect = modalCanvas.getBoundingClientRect();
+            if (e.touches) {
+                // Para dispositivos móveis
+                const touch = e.touches[0];
+                return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
+            } else {
+                // Para desktop
+                return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+            }
+        }
+
+        // Funções de toque para dispositivos móveis
+        function startDrawingTouch(e) {
+            e.preventDefault();
+            isDrawing = true;
+            const pos = getPosition(e);
+            [lastX, lastY] = [pos.x, pos.y];
+        }
+
+        function drawTouch(e) {
+            if (!isDrawing) return;
+            const pos = getPosition(e);
+            const ctx = signaturePads[currentModalCanvasId];
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            [lastX, lastY] = [pos.x, pos.y];
+        }
+
+        function stopDrawingTouch() {
+            isDrawing = false;
+        }
+    }
+
+    // Função para fechar o modal
+    function closeSignatureModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+
+    // Função para limpar a assinatura no modal
+    function clearSignature(modalCanvasId) {
+        let modalCanvas = document.getElementById(modalCanvasId);
+        let ctx = signaturePads[modalCanvasId];
+        ctx.clearRect(0, 0, modalCanvas.width, modalCanvas.height);  // Limpa o canvas
+    }
+
+    // Função para salvar a assinatura no canvas do formulário com ajuste proporcional
+    function saveSignature(modalCanvasId, formCanvasId) {
+        let modalCanvas = document.getElementById(modalCanvasId);
+        let formCanvas = document.getElementById(formCanvasId);
+        let ctxModal = signaturePads[modalCanvasId];
+        let ctxForm = formCanvas.getContext('2d');
+        
+        // Calcular a proporção do tamanho
+        const scaleX = formCanvas.width / modalCanvas.width;
+        const scaleY = formCanvas.height / modalCanvas.height;
+        
+        // Ajuste proporcional para garantir que a imagem não seja distorcida
+        const scale = Math.min(scaleX, scaleY);
+        
+        // Copiar a imagem do modal para o formulário, preservando a proporção
+        ctxForm.clearRect(0, 0, formCanvas.width, formCanvas.height);  // Limpa o canvas do formulário
+        ctxForm.drawImage(modalCanvas, 0, 0, modalCanvas.width, modalCanvas.height, 0, 0, formCanvas.width, formCanvas.height); // Desenha no canvas com o ajuste proporcional
+        
+        // Fecha o modal após salvar
+        closeSignatureModal(`signatureModal${modalCanvasId.charAt(modalCanvasId.length - 1)}`);
+    }
+
