@@ -63,13 +63,13 @@ function fillData(data) {
     document.getElementById('myTextarea').value = formData.myTextarea;
     document.getElementById('figura1').value = formData.figura1;
     document.getElementById('figura2').value = formData.figura2;
-    
+
     // Cria botão para download das imagens
     const button = document.createElement("button");
     button.innerHTML = "Baixar Imagens";
     document.body.appendChild(button);
 
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
         downloadImage(formData.img1, 'img1.png');
         downloadImage(formData.img2, 'img2.png');
     });
@@ -104,7 +104,7 @@ function dataURItoBlob(dataURI) {
 // Funções para carregar imagens no formulário
 function loadImage1(event) {
     const reader = new FileReader();
-    reader.onload = function() {
+    reader.onload = function () {
         document.getElementById('img1').src = reader.result;
     };
     reader.readAsDataURL(event.target.files[0]);
@@ -112,15 +112,15 @@ function loadImage1(event) {
 
 function loadImage2(event) {
     const reader = new FileReader();
-    reader.onload = function() {
+    reader.onload = function () {
         document.getElementById('img2').src = reader.result;
     };
     reader.readAsDataURL(event.target.files[0]);
 }
 
 // Função para gerar um PDF a partir de um conteúdo da página
-$(document).ready(function() {
-    $("#downloadPDF").click(function() {
+$(document).ready(function () {
+    $("#downloadPDF").click(function () {
         const content = document.getElementById("content");
         const width = content.offsetWidth;
         const height = content.offsetHeight;
@@ -131,7 +131,7 @@ $(document).ready(function() {
 
         html2canvas(content, {
             scale: 10 // Aumenta a escala para melhorar a qualidade
-        }).then(function(canvas) {
+        }).then(function (canvas) {
             const imgData = canvas.toDataURL('image/png');
             const doc = new jsPDF('p', 'mm', [595, 842]); // Define o formato de página para A4
             doc.addImage(imgData, 'PNG', 1, 1, 210, 297); // Insere a imagem no PDF
@@ -200,143 +200,170 @@ function showError(error) {
 
 
 
-    let signaturePads = {};  // Para armazenar os contextos dos canvases
-    let currentModalCanvasId = null; // O canvas atual sendo editado no modal
-    let currentFormCanvasId = null;  // O canvas correspondente no formulário
+let signaturePads = {};  // Para armazenar os contextos dos canvases
+let currentModalCanvasId = null; // O canvas atual sendo editado no modal
+let currentFormCanvasId = null;  // O canvas correspondente no formulário
 
-    // Função para abrir o modal e configurar o canvas correto
-    function openSignatureModal(modalCanvasId, formCanvasId) {
-        // Exibe o modal correto baseado no número do canvas
-        const modalNumber = modalCanvasId.charAt(modalCanvasId.length - 1);
-        document.getElementById(`signatureModal${modalNumber}`).style.display = 'flex';
+// Função para abrir o modal e configurar o canvas correto
+function openSignatureModal(modalCanvasId, formCanvasId) {
+    // Exibe o modal correto baseado no número do canvas
+    const modalNumber = modalCanvasId.charAt(modalCanvasId.length - 1);
+    document.getElementById(`signatureModal${modalNumber}`).style.display = 'flex';
 
-        // Prepara o canvas do modal
-        let modalCanvas = document.getElementById(modalCanvasId);
-        modalCanvas.width = window.innerWidth * 0.9;  // Ajuste do tamanho do canvas
-        modalCanvas.height = 400;  // Ajuste da altura do canvas
-        let context = modalCanvas.getContext('2d');
+    // Prepara o canvas do modal
+    let modalCanvas = document.getElementById(modalCanvasId);
+    modalCanvas.width = window.innerWidth * 0.9;  // Ajuste do tamanho do canvas
+    modalCanvas.height = 400;  // Ajuste da altura do canvas
+    let context = modalCanvas.getContext('2d');
 
-        // Guardando o contexto para desenhos
-        signaturePads[modalCanvasId] = context;
-        currentModalCanvasId = modalCanvasId;  // Guarda o id do canvas modal
-        currentFormCanvasId = formCanvasId;  // Guarda o id do canvas correspondente no formulário
+    // Guardando o contexto para desenhos
+    signaturePads[modalCanvasId] = context;
+    currentModalCanvasId = modalCanvasId;  // Guarda o id do canvas modal
+    currentFormCanvasId = formCanvasId;  // Guarda o id do canvas correspondente no formulário
 
-        // Inicializa os eventos de desenho
-        initializeCanvas(modalCanvas);
+    // Inicializa os eventos de desenho
+    initializeCanvas(modalCanvas);
+}
+
+// Função para inicializar os eventos de desenho no canvas
+function initializeCanvas(modalCanvas) {
+    let context = signaturePads[currentModalCanvasId];
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    // Ajustando a qualidade da linha
+    context.lineJoin = 'round';  // Para suavizar as pontas da linha
+    context.lineCap = 'round';   // Para suavizar as extremidades da linha
+    context.lineWidth = 5;       // Ajuste do tamanho da linha para maior visibilidade
+
+    // Inicia o desenho (mouse ou toque)
+    modalCanvas.addEventListener('mousedown', startDrawing);
+    modalCanvas.addEventListener('mousemove', draw);
+    modalCanvas.addEventListener('mouseup', stopDrawing);
+    modalCanvas.addEventListener('mouseout', stopDrawing);
+    modalCanvas.addEventListener('touchstart', startDrawingTouch, { passive: false });
+    modalCanvas.addEventListener('touchmove', drawTouch, { passive: false });
+    modalCanvas.addEventListener('touchend', stopDrawingTouch);
+
+    // Função de início de desenho
+    function startDrawing(e) {
+        isDrawing = true;
+        const pos = getPosition(e);
+        [lastX, lastY] = [pos.x, pos.y];
     }
 
-    // Função para inicializar os eventos de desenho no canvas
-    function initializeCanvas(modalCanvas) {
-        let context = signaturePads[currentModalCanvasId];
-        let isDrawing = false;
-        let lastX = 0;
-        let lastY = 0;
+    // Função de desenhar
+    function draw(e) {
+        if (!isDrawing) return;
+        const ctx = signaturePads[currentModalCanvasId];
+        const { x, y } = getPosition(e);
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        [lastX, lastY] = [x, y];
+    }
 
-        // Ajustando a qualidade da linha
-        context.lineJoin = 'round';  // Para suavizar as pontas da linha
-        context.lineCap = 'round';   // Para suavizar as extremidades da linha
-        context.lineWidth = 5;       // Ajuste do tamanho da linha para maior visibilidade
+    function stopDrawing() {
+        isDrawing = false;
+    }
 
-        // Inicia o desenho (mouse ou toque)
-        modalCanvas.addEventListener('mousedown', startDrawing);
-        modalCanvas.addEventListener('mousemove', draw);
-        modalCanvas.addEventListener('mouseup', stopDrawing);
-        modalCanvas.addEventListener('mouseout', stopDrawing);
-        modalCanvas.addEventListener('touchstart', startDrawingTouch, { passive: false });
-        modalCanvas.addEventListener('touchmove', drawTouch, { passive: false });
-        modalCanvas.addEventListener('touchend', stopDrawingTouch);
-
-        // Função de início de desenho
-        function startDrawing(e) {
-            isDrawing = true;
-            const pos = getPosition(e);
-            [lastX, lastY] = [pos.x, pos.y];
-        }
-
-        // Função de desenhar
-        function draw(e) {
-            if (!isDrawing) return;
-            const ctx = signaturePads[currentModalCanvasId];
-            const { x, y } = getPosition(e);
-            ctx.beginPath();
-            ctx.moveTo(lastX, lastY);
-            ctx.lineTo(x, y);
-            ctx.stroke();
-            [lastX, lastY] = [x, y];
-        }
-
-        function stopDrawing() {
-            isDrawing = false;
-        }
-
-        // Função para obter a posição do mouse ou toque
-        function getPosition(e) {
-            const rect = modalCanvas.getBoundingClientRect();
-            if (e.touches) {
-                // Para dispositivos móveis
-                const touch = e.touches[0];
-                return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
-            } else {
-                // Para desktop
-                return { x: e.clientX - rect.left, y: e.clientY - rect.top };
-            }
-        }
-
-        // Funções de toque para dispositivos móveis
-        function startDrawingTouch(e) {
-            e.preventDefault();
-            isDrawing = true;
-            const pos = getPosition(e);
-            [lastX, lastY] = [pos.x, pos.y];
-        }
-
-        function drawTouch(e) {
-            if (!isDrawing) return;
-            const pos = getPosition(e);
-            const ctx = signaturePads[currentModalCanvasId];
-            ctx.beginPath();
-            ctx.moveTo(lastX, lastY);
-            ctx.lineTo(pos.x, pos.y);
-            ctx.stroke();
-            [lastX, lastY] = [pos.x, pos.y];
-        }
-
-        function stopDrawingTouch() {
-            isDrawing = false;
+    // Função para obter a posição do mouse ou toque
+    function getPosition(e) {
+        const rect = modalCanvas.getBoundingClientRect();
+        if (e.touches) {
+            // Para dispositivos móveis
+            const touch = e.touches[0];
+            return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
+        } else {
+            // Para desktop
+            return { x: e.clientX - rect.left, y: e.clientY - rect.top };
         }
     }
 
-    // Função para fechar o modal
-    function closeSignatureModal(modalId) {
-        document.getElementById(modalId).style.display = 'none';
+    // Funções de toque para dispositivos móveis
+    function startDrawingTouch(e) {
+        e.preventDefault();
+        isDrawing = true;
+        const pos = getPosition(e);
+        [lastX, lastY] = [pos.x, pos.y];
     }
 
-    // Função para limpar a assinatura no modal
-    function clearSignature(modalCanvasId) {
-        let modalCanvas = document.getElementById(modalCanvasId);
-        let ctx = signaturePads[modalCanvasId];
-        ctx.clearRect(0, 0, modalCanvas.width, modalCanvas.height);  // Limpa o canvas
+    function drawTouch(e) {
+        if (!isDrawing) return;
+        const pos = getPosition(e);
+        const ctx = signaturePads[currentModalCanvasId];
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+        [lastX, lastY] = [pos.x, pos.y];
     }
 
-    // Função para salvar a assinatura no canvas do formulário com ajuste proporcional
-    function saveSignature(modalCanvasId, formCanvasId) {
-        let modalCanvas = document.getElementById(modalCanvasId);
-        let formCanvas = document.getElementById(formCanvasId);
-        let ctxModal = signaturePads[modalCanvasId];
-        let ctxForm = formCanvas.getContext('2d');
-        
-        // Calcular a proporção do tamanho
-        const scaleX = formCanvas.width / modalCanvas.width;
-        const scaleY = formCanvas.height / modalCanvas.height;
-        
-        // Ajuste proporcional para garantir que a imagem não seja distorcida
-        const scale = Math.min(scaleX, scaleY);
-        
-        // Copiar a imagem do modal para o formulário, preservando a proporção
-        ctxForm.clearRect(0, 0, formCanvas.width, formCanvas.height);  // Limpa o canvas do formulário
-        ctxForm.drawImage(modalCanvas, 0, 0, modalCanvas.width, modalCanvas.height, 0, 0, formCanvas.width, formCanvas.height); // Desenha no canvas com o ajuste proporcional
-        
-        // Fecha o modal após salvar
-        closeSignatureModal(`signatureModal${modalCanvasId.charAt(modalCanvasId.length - 1)}`);
+    function stopDrawingTouch() {
+        isDrawing = false;
     }
+}
 
+// Função para fechar o modal
+function closeSignatureModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+// Função para limpar a assinatura no modal
+function clearSignature(modalCanvasId) {
+    let modalCanvas = document.getElementById(modalCanvasId);
+    let ctx = signaturePads[modalCanvasId];
+    ctx.clearRect(0, 0, modalCanvas.width, modalCanvas.height);  // Limpa o canvas
+}
+
+// Função para salvar a assinatura no canvas do formulário com ajuste proporcional
+function saveSignature(modalCanvasId, formCanvasId) {
+    let modalCanvas = document.getElementById(modalCanvasId);
+    let formCanvas = document.getElementById(formCanvasId);
+    let ctxModal = signaturePads[modalCanvasId];
+    let ctxForm = formCanvas.getContext('2d');
+
+    // Calcular a proporção do tamanho
+    const scaleX = formCanvas.width / modalCanvas.width;
+    const scaleY = formCanvas.height / modalCanvas.height;
+
+    // Ajuste proporcional para garantir que a imagem não seja distorcida
+    const scale = Math.min(scaleX, scaleY);
+
+    // Copiar a imagem do modal para o formulário, preservando a proporção
+    ctxForm.clearRect(0, 0, formCanvas.width, formCanvas.height);  // Limpa o canvas do formulário
+    ctxForm.drawImage(modalCanvas, 0, 0, modalCanvas.width, modalCanvas.height, 0, 0, formCanvas.width, formCanvas.height); // Desenha no canvas com o ajuste proporcional
+
+    // Fecha o modal após salvar
+    closeSignatureModal(`signatureModal${modalCanvasId.charAt(modalCanvasId.length - 1)}`);
+}
+
+
+
+
+function gerarPDF() {
+    // Captura o conteúdo HTML da div
+    const htmlContent = document.getElementById('corpo').outerHTML;
+
+    // Enviar para o servidor para gerar o PDF
+    fetch('http://localhost:3000/gerar-pdf', {  // Certifique-se de usar a URL correta (localhost:3000 ou URL do seu servidor)
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ htmlContent })  // Envia o conteúdo HTML
+    })
+    .then(response => response.blob())  // Retorna o PDF como um blob
+    .then(blob => {
+        // Criar link para download do PDF
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'documento_ajustado.pdf';
+        link.click();  // Baixa o PDF
+    })
+    .catch(error => {
+        console.error('Erro ao gerar o PDF:', error);
+    });
+}

@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "puppeteer": "^24.3.0",
+    "tmp": "^0.2.3"
+  }
+}
