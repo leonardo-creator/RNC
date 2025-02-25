@@ -347,15 +347,24 @@ function gerarPDF() {
     // Captura o conteúdo HTML da div
     const htmlContent = document.getElementById('corpo').outerHTML;
 
+    // Defina a URL completa do seu servidor (caso esteja usando GitHub Codespaces ou outra URL pública)
+    const serverURL = 'https://silver-umbrella-55r75wqq447f79w-5500.app.github.dev:3000/gerar-pdf'; // Substitua pela URL correta
+
     // Enviar para o servidor para gerar o PDF
-    fetch('http://localhost:3000/gerar-pdf', {  // Certifique-se de usar a URL correta (localhost:3000 ou URL do seu servidor)
+    fetch(serverURL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ htmlContent })  // Envia o conteúdo HTML
+        body: JSON.stringify({ htmlContent })
     })
-    .then(response => response.blob())  // Retorna o PDF como um blob
+    .then(response => {
+        // Verifica se a resposta foi bem-sucedida
+        if (!response.ok) {
+            throw new Error('Erro ao gerar o PDF');
+        }
+        return response.blob();  // Retorna o PDF como um blob
+    })
     .then(blob => {
         // Criar link para download do PDF
         const link = document.createElement('a');
